@@ -1,41 +1,39 @@
+import nltk
+nltk.download("words")
+from nltk.corpus import words
+import string
+english = set(w.lower() for w in words.words())
 from flask import Flask, request, render_template
-from hunspell import Hunspell
-h = Hunspell()
 app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    return render_template('input.html')
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def my_form_post():
 	text = request.form['text']
+	message = text.upper()
 	def bruteForce(message):
 		letters = list(message)
 		letterpos = []
 		for letter in letters:
-			#if letter == " ":
-			#  pos = " "
-			#else:
-			if str.isalpha(letter):
+			if letter == " " or letter == "," or letter == "-" or letter == "_" or letter == "." or letter == ";" or letter == ":" or letter == "'":
+				pos = letter
+			else:
 				pos = ord(letter)-97
-				letterpos.append(pos)
+			letterpos.append(pos)
 		a = 1
 		b = 1
-		apots = [1,3,5,7,9,11,15,17,19,21,23,25]
-		avars = []
-		for A in apots:
-			for i in range(1, 26):
-				if (A*i) % 26 == 1:
-					avars.append(i)
+		avars = [1,9,21,15,3,19,7,23,11,5,17,25]
 		abvars = []
 		for letter in letterpos:
-			if letter == " ":
+			if letter == " " or letter == "," or letter == "." or letter == ";" or letter == ":" or letter == "'": 
 				currentletter = []
 				for a in avars:
 					b = 1
 					while b<=26:
-						currentletter.append(" ")
+						currentletter.append(letter)
 						b=b+1
 			else:
 				currentletter = []
@@ -58,21 +56,17 @@ def my_form_post():
 		while times < 311: 
 			listwords = ([i[times] for i in abvars])
 			wordjoined = ("".join(listwords))
-			if containsEnglish(wordjoined):
-                                return wordjoined
-			times += 1	
-	def containsEnglish(string):
-		l = len(string)
-		correct = 0
-		for i in range(l): #for length of string
-			for j in range(i+7, l+1): #for every set of letters 6 or more
-				if correct > 10: #if at least 10 words are english, return yes
-					return(True)
-				if h.spell(string[i:j]) == True: #check if that set is a word
-					correct+=1 #if yes increace english likelyhood
-		return(False) #otherwise return no
-	def affineShifts():
-		message = text.upper()
-		return bruteForce(message)
-	affineShifts()
+			correct = 0
+			lengthto = len(wordjoined.split())
+			for word in wordjoined.split():
+				if correct <= (0.5*lengthto):
+					#not too sure is 40% is too harsh or too relaxed.
+					if len(word) > 2:
+						if word in english:
+							correct += 1
+				else:
+					return wordjoined
+			times += 1
+		
+	return bruteForce(message)
     
