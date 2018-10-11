@@ -1,4 +1,7 @@
-For debug:
-Open powershell & enter:
-$env:FLASK_APP = "index.py"
-flask run
+# Debug Run:
+Open Powershell & Enter:
+
+    $env:FLASK_APP = "index.py"
+    flask run
+
+
