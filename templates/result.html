@@ -27,22 +27,14 @@
 			<div class="wrap-contact2">
 				<form class="contact2-form validate-form" method="POST">
 					<span class="contact2-form-title">
-						Tech Support
+						Decoded Message:
 					</span>
-					
-					<div class="wrap-input2 validate-input" data-validate = "Message is required">
-						<input class="input2" name="text"></input>
-						<span class="focus-input2" data-placeholder="MESSAGE"></span>
-					</div>
-
-					<div class="container-contact2-form-btn">
-						<div class="wrap-contact2-form-btn">
-							<div class="contact2-form-bgbtn"></div>
-							<button class="contact2-form-btn" type="submit">
-								DECODE
-							</button>
-						</div>
-					</div>
+					<span class="contact2-form-title result">
+						<p>
+						<b>Substition:</b>
+						{{ data }}
+						</p>
+					</span>
 				</form>
 			</div>
 		</div>
