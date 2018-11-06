@@ -1,7 +1,6 @@
 # Debug Run:
+Ensure all dependencies have been installed.
 Open Powershell & Enter:
-
-    $env:FLASK_APP = "index.py"
-    flask run
+    python index.py
 
 
