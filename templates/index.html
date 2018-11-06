@@ -36,24 +36,31 @@
 					</div>
 					<ul class="list-group">
 						<li class="list-group-item">
-							Substition
+							Substitution
 							<div class="material-switch pull-right">
-								<input id="someSwitchOptionDefault" name="substition" type="checkbox"/>
+								<input id="someSwitchOptionDefault" name="substitution" type="checkbox"/>
 								<label for="someSwitchOptionDefault" class="label-default"></label>
 							</div>
 						</li>
-						<li class="list-group-item">
+						<!--====<li class="list-group-item">
 							Vigenere
 							<div class="material-switch pull-right">
 								<input id="someSwitchOptionPrimary" name="vigenere" type="checkbox"/>
 								<label for="someSwitchOptionPrimary" class="label-primary"></label>
 							</div>
-						</li>
+						</li>-->
 						<li class="list-group-item">
 							Column Transposition
 							<div class="material-switch pull-right">
-								<input id="someSwitchOptionSuccess" name="columntrans" type="checkbox"/>
+								<input id="someSwitchOptionSuccess" name="columntrans" onclick="javascript:yesnoCheck();" type="checkbox" /></input>
 								<label for="someSwitchOptionSuccess" class="label-success"></label>
+							</div>
+							<div class="reveal-if-active item" id="ifYes">
+								<label for="which-dog">Enter number of columns; if unknown leave blank to cycle through 2-20:</label>
+								<div class="wrap-input2">
+										<input class="input2" name="columns"></input>
+										<span class="focus-input2" data-placeholder="Columns"></span>
+									</div>
 							</div>
 						</li>
 					</ul>

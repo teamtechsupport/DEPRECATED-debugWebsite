@@ -1,3 +1,21 @@
+var item = $('.item');
+function yesnoCheck() {
+    if (document.getElementById('someSwitchOptionSuccess').checked) {
+            item.addClass('is-visible');
+            setTimeout(function () {
+              item.addClass('is-open');
+            }, 2);
+    }
+    else{
+        item.removeClass('is-open');
+        item.one('transitionend', function(e) {
+        item.removeClass('is-visible');
+        });
+    }
+
+}
+
+
 
 (function ($) {
     "use strict";
